@@ -2,6 +2,12 @@
 
 Complete implementation of a production-ready returns and refunds agent using AWS Bedrock AgentCore with Memory, Gateway, and Knowledge Base integrations.
 
+## 📚 Documentation
+
+- **[Complete Tutorial](TUTORIAL.md)** - Step-by-step guide with detailed explanations
+- **[Quick Start](#quick-start)** - Get started in minutes
+- **[Architecture](#architecture)** - System design and components
+
 ## Overview
 
 This project demonstrates a full-featured customer service agent that:
