@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# AWS & AgentCore
+.bedrock_agentcore.yaml
+Dockerfile
+.dockerignore
+
+# Configuration files with sensitive data
+*_config.json
+cognito_config.json
+gateway_config.json
+gateway_role_config.json
+kb_config.json
+lambda_config.json
+memory_config.json
+runtime_config.json
+runtime_execution_role_config.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
