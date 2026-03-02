@@ -63,6 +63,10 @@ AgentCore Runtime (Production Agent)
 
 ### Utility Scripts
 - `13_list_gateway_targets.py` - List registered gateway targets
+- `22_view_logs.py` - View recent CloudWatch logs programmatically
+- `23_get_dashboard.py` - Get GenAI Observability dashboard URL
+- `24_get_logs_info.py` - Get log group info and AWS CLI commands
+- `25_cleanup_aws.py` - Safely delete all AWS resources
 
 ### Configuration Files
 - `requirements.txt` - Python dependencies
@@ -161,12 +165,20 @@ python3 21_invoke_agent.py
 https://console.aws.amazon.com/cloudwatch/home?region=us-west-2#gen-ai-observability/agent-core
 ```
 
+Or get the URL programmatically:
+```bash
+python3 23_get_dashboard.py
+```
+
 ### View Logs
 ```bash
 # Programmatically
 python3 22_view_logs.py
 
-# AWS CLI
+# Get log group info and CLI commands
+python3 24_get_logs_info.py
+
+# AWS CLI - tail in real-time
 aws logs tail /aws/bedrock-agentcore/runtimes/returns_refunds_agent-*/DEFAULT --follow
 ```
 
@@ -174,6 +186,29 @@ aws logs tail /aws/bedrock-agentcore/runtimes/returns_refunds_agent-*/DEFAULT --
 ```
 https://console.aws.amazon.com/xray/home?region=us-west-2#/traces
 ```
+
+## Cleanup
+
+To delete all AWS resources created during this tutorial:
+
+```bash
+python3 25_cleanup_aws.py
+```
+
+**What it deletes:**
+- AgentCore Runtime agent
+- AgentCore Gateway and targets
+- AgentCore Memory
+- Lambda function and IAM roles
+- Cognito User Pool and domain
+- IAM roles and policies
+- ECR repository
+
+**Safety features:**
+- 5-second warning before deletion
+- Proper deletion order (dependencies first)
+- Graceful handling of missing resources
+- Rerunnable (safe to run multiple times)
 
 ## Cost Optimization
 

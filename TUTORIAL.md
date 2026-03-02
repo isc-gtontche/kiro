@@ -803,3 +803,139 @@ This architecture can be adapted for:
 - Any domain requiring memory, external data, and custom logic
 
 Happy building! 🚀
+
+
+---
+
+## Cleanup
+
+When you're done with the tutorial, you can safely delete all AWS resources:
+
+```bash
+python3 25_cleanup_aws.py
+```
+
+### What Gets Deleted
+
+The cleanup script removes all resources in the proper order:
+
+1. **AgentCore Runtime** - Deployed agent
+2. **Gateway Targets** → wait 5 seconds → **Gateway**
+3. **AgentCore Memory** - Customer data
+4. **Lambda Function** → **Lambda IAM Role**
+5. **Cognito Domain** → wait 5 seconds → **User Pool**
+6. **Gateway IAM Role** → **Gateway Policy**
+7. **Runtime IAM Role** → **Runtime Policy**
+8. **ECR Repository** - Docker containers
+
+### Safety Features
+
+- **5-second warning** before deletion (press Ctrl+C to cancel)
+- **Proper deletion order** (dependencies first)
+- **Graceful handling** of missing resources
+- **Rerunnable** (safe to run multiple times)
+- **Clear progress reporting** for each operation
+
+### What Gets Preserved
+
+- Configuration JSON files (for reference)
+- Python scripts (reusable for future deployments)
+
+To remove configuration files:
+```bash
+rm *_config.json
+```
+
+### Monitoring Scripts Reference
+
+**Get Dashboard URL:**
+```bash
+python3 23_get_dashboard.py
+```
+
+**Get Log Information:**
+```bash
+python3 24_get_logs_info.py
+```
+
+**View Recent Logs:**
+```bash
+python3 22_view_logs.py
+```
+
+These scripts help you monitor your agent's performance, debug issues, and track costs.
+
+---
+
+## Complete Script Reference
+
+Here's the complete list of all scripts in order:
+
+### Setup Phase
+- `00_retrieve_kb_id.py` - Get Knowledge Base ID
+- `03_create_memory.py` - Create Memory resource
+- `04_seed_memory.py` - Add sample conversations
+- `08_create_cognito.py` - Set up OAuth
+- `09_create_gateway_role.py` - Create Gateway IAM role
+- `10_create_lambda.py` - Deploy Lambda function
+- `11_create_gateway.py` - Create Gateway
+- `12_add_lambda_to_gateway.py` - Register Lambda target
+- `16_create_runtime_role.py` - Create Runtime IAM role
+
+### Agent Development
+- `01_returns_refunds_agent.py` - Basic agent
+- `06_memory_enabled_agent.py` - Agent with memory
+- `14_full_agent.py` - Complete agent (local)
+- `17_runtime_agent.py` - Production agent
+
+### Testing
+- `02_test_agent.py` - Test basic agent
+- `05_test_memory.py` - Verify memory
+- `07_test_memory_agent.py` - Test memory agent
+- `13_list_gateway_targets.py` - List gateway targets
+- `15_test_full_agent.py` - Test complete agent
+
+### Deployment
+- `19_deploy_agent.py` - Deploy to Runtime
+- `20_check_status.py` - Check deployment status
+- `21_invoke_agent.py` - Test production agent
+
+### Monitoring
+- `22_view_logs.py` - View CloudWatch logs
+- `23_get_dashboard.py` - Get dashboard URL
+- `24_get_logs_info.py` - Get log group info
+
+### Cleanup
+- `25_cleanup_aws.py` - Delete all resources
+
+---
+
+## Final Thoughts
+
+Congratulations! You've built a complete production-ready AI agent with:
+
+✓ Custom business logic
+✓ Persistent memory across sessions
+✓ External API integration via Gateway
+✓ Knowledge base access for accurate information
+✓ Production deployment with auto-scaling
+✓ Comprehensive monitoring and observability
+✓ Secure OAuth authentication
+
+This architecture demonstrates the power of AgentCore for building sophisticated AI agents without managing infrastructure. The patterns you've learned can be applied to any domain requiring memory, external data access, and custom logic.
+
+**Key Takeaways:**
+- AgentCore Memory provides intelligent, persistent storage
+- AgentCore Gateway centralizes external service access
+- AgentCore Runtime eliminates infrastructure management
+- Proper testing at each phase ensures reliability
+- Monitoring is built-in and comprehensive
+
+**Next Steps:**
+- Adapt this architecture for your use case
+- Add more custom tools and integrations
+- Expand memory strategies for your domain
+- Scale to production traffic
+- Monitor costs and optimize
+
+Happy building! 🚀
